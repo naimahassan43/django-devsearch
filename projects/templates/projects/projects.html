@@ -1,31 +1,27 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<h4>Hell, you are on the {{page}} page!</h4>
-{% if number > 10 %}
-<p>Number is greater than 10</p>
-{% elif number == 10 %}
-<p>Number is equal to 10</p>
-{% else %}
-<p>Number is less than 10</p>
-{% endif %}
-<h1>Projects template</h1>
-<p>typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
- printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
- but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with
- the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
- Aldus PageMaker including versions of Lorem Ipsum.</p>
 
-<hr>
-<hr>
-
-<h3>Projects lists</h3>
-<ul>
+<h1>Projects lists</h1>
+<table>
+ <tr>
+  <th>ID</th>
+  <th>Project</th>
+  <th>Positive Votes</th>
+  <th>Votes</th>
+  <th>Created On</th>
+  <th></th>
+ </tr>
  {% for project in projects %}
- <li>Project Name:
-  <a href="{% url 'project' project.id %}">{{ project.title }}</a>-- {{ project.description }}
- </li>
+ <tr>
+  <td>{{ project.id }}</td>
+  <td>{{ project.title }}</td>
+  <td>{{ project.vote_ratio }} %</td>
+  <td>{{ project.vote_total }}</td>
+  <td>{{ project.created_at }}</td>
+  <td><a href="{% url 'project' project.id %}">View</a></td>
+ </tr>
  {% endfor %}
+</table>
 
-</ul>
 {% endblock content %}
